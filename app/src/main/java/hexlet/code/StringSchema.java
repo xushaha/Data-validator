@@ -1,23 +1,42 @@
-package main.java.hexlet.code;
+package hexlet.code;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 
 public class StringSchema {
 
-    // required – любая непустая строка
-    // minLength – строка равна или длиннее указанного числа
-    // contains – строка содержит определённую подстроку
+    List<Predicate> checksList = new ArrayList<>();
+    boolean isRequired;
 
-    public Predicate<String> required() {
-        return x -> x instanceof String && !x.equals("");
+    public StringSchema required() {
+        setRequired(true);
+        checksList.add(x -> x instanceof String && !x.equals(""));
+        return this;
     }
 
-    public Predicate<String> minLength(int minLength) {
-        return x -> x.length() >= minLength;
+    public StringSchema minLength(int minLength) {
+        Predicate<String> minLeng = x -> x.length() >= minLength;
+        checksList.add(minLeng);
+        return this;
     }
 
-    public Predicate<String> contains(String subString) {
-        return x -> x.contains(subString);
+    public StringSchema contains(String subString) {
+        Predicate<String> contains = x -> x.contains(subString);
+        checksList.add(contains);
+        return this;
+    }
+
+    public void setRequired(boolean required) {
+        isRequired = required;
+    }
+
+    public boolean isValid(Object schema) {
+        if (!isRequired) {
+            return true;
+        } else {
+            return checksList.stream().allMatch(check -> check.test(schema));
+        }
     }
 }
