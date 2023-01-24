@@ -1,6 +1,6 @@
 package hexlet.code;
 /*import hexlet.code.Validator;
-import hexlet.code.StringSchema;*/
+import hexlet.code.Schemas.StringSchema;*/
 
 public class App {
 

@@ -1,15 +1,13 @@
-package hexlet.code;
+package hexlet.code.Schemas;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 
-public class StringSchema {
+public class StringSchema extends BaseSchema {
 
-    List<Predicate> checksList = new ArrayList<>();
-    boolean isRequired;
-
+    @Override
     public StringSchema required() {
         setRequired(true);
         checksList.add(x -> x instanceof String && !x.equals(""));
@@ -28,15 +26,4 @@ public class StringSchema {
         return this;
     }
 
-    public void setRequired(boolean required) {
-        isRequired = required;
-    }
-
-    public boolean isValid(Object schema) {
-        if (!isRequired) {
-            return true;
-        } else {
-            return checksList.stream().allMatch(check -> check.test(schema));
-        }
-    }
 }
