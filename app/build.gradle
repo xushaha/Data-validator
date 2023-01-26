@@ -4,9 +4,8 @@ plugins {
     id 'com.adarshr.test-logger' version '3.1.0'
     id 'se.patrikerdes.use-latest-versions' version '0.2.18'
     id 'com.github.ben-manes.versions' version '0.42.0'
-    id 'io.freefair.lombok' version '6.4.1'
     id 'jacoco'
-    id 'net.ltgt.errorprone' version '2.0.2'
+
 }
 
 group 'hexlet.code'
@@ -20,9 +19,6 @@ compileJava {
     options.release = 17
 }
 
-application {
-    mainClass = 'hexlet.code.App'
-}
 
 dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
@@ -35,7 +31,6 @@ dependencies {
             'org.assertj:assertj-core:3.24.2'
     )
 
-    errorprone 'com.google.errorprone:error_prone_core:2.11.0'
 }
 
 test {

@@ -17,4 +17,30 @@ public class MapSchema extends BaseSchema {
         checksList.add(range);
         return this;
     }
+
+
+    public MapSchema shape(Map<String, BaseSchema> schemas) {
+        Predicate<Map> shape = value -> shapeCheck(schemas, value);
+        checksList.add(shape);
+        return this;
+    }
+
+    public boolean shapeCheck(Map<String, BaseSchema> schemas, Map<String, Object> mapToCheck) {
+
+        for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
+
+            String key = entry.getKey();
+            BaseSchema check = entry.getValue();
+            Object toCheck = mapToCheck.get(key);
+
+            if (!mapToCheck.containsKey(key) || !check.isValid(toCheck)) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
 }
+
+
