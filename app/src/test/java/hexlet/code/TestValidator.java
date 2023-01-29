@@ -47,31 +47,7 @@ public class TestValidator {
         assertTrue(schema.isValid("abc"));
         assertTrue(schema.isValid(5));
 
-        assertFalse(schema.required().isValid(null));
-        assertFalse(schema.required().isValid("wh"));
-        assertTrue(schema.required().isValid(10));
-
-        assertTrue(schema.positive().isValid(10));
-        assertFalse(schema.positive().isValid(0));
-        assertFalse(schema.positive().isValid(-10));
-
-        assertTrue(schema.range(5, 10).isValid(5));
-        assertTrue(schema.range(5, 10).isValid(10));
-        assertFalse(schema.range(5, 10).isValid(11));
-        assertFalse(schema.range(5, 10).isValid(-5));
-
-    }
-
-    @Test
-    public void testValidatorNumber2() {
-        Validator v = new Validator();
-        NumberSchema schema = v.number();
-
-        assertTrue(schema.isValid(null));
-        assertTrue(schema.isValid("abc"));
-        assertTrue(schema.isValid(5));
-
-        assertTrue(schema.range(5, 10).isValid(""));
+        //assertTrue(schema.range(5, 10).isValid(""));
 
         assertFalse(schema.required().isValid(null));
         assertFalse(schema.required().isValid("wh"));

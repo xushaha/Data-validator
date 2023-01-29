@@ -5,6 +5,12 @@ import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema {
 
+
+    @Override
+    public boolean isValidType(Object object) {
+        return object instanceof Map;
+    }
+
     @Override
     public MapSchema required() {
         setRequired(true);

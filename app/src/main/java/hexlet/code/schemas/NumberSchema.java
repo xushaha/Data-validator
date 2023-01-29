@@ -5,6 +5,11 @@ import java.util.function.Predicate;
 public class NumberSchema extends BaseSchema {
 
     @Override
+    public boolean isValidType(Object object) {
+        return object instanceof Integer;
+    }
+
+    @Override
     public NumberSchema required() {
         setRequired(true);
         checksList.add(x -> x instanceof Integer);

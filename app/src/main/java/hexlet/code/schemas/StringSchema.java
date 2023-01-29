@@ -1,9 +1,16 @@
 package hexlet.code.schemas;
 
+import java.util.Map;
 import java.util.function.Predicate;
 
 
 public class StringSchema extends BaseSchema {
+
+    @Override
+    public boolean isValidType(Object object) {
+        return object instanceof String;
+
+    }
 
     @Override
     public StringSchema required() {
