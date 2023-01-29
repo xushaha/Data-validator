@@ -47,20 +47,44 @@ public class TestValidator {
         assertTrue(schema.isValid("abc"));
         assertTrue(schema.isValid(5));
 
-        schema.required(); //любое число включая ноль
-        assertFalse(schema.isValid(null));
-        assertFalse(schema.isValid("wh"));
-        assertTrue(schema.isValid(10));
+        assertFalse(schema.required().isValid(null));
+        assertFalse(schema.required().isValid("wh"));
+        assertTrue(schema.required().isValid(10));
 
-        schema.positive(); //положительное число
-        assertTrue(schema.isValid(10));
-        assertFalse(schema.isValid(0));
-        assertFalse(schema.isValid(-10));
+        assertTrue(schema.positive().isValid(10));
+        assertFalse(schema.positive().isValid(0));
+        assertFalse(schema.positive().isValid(-10));
 
-        schema.range(5, 10); //диапазон, в который должны попадать числа включая границы
+        assertTrue(schema.range(5, 10).isValid(5));
+        assertTrue(schema.range(5, 10).isValid(10));
+        assertFalse(schema.range(5, 10).isValid(11));
+        assertFalse(schema.range(5, 10).isValid(-5));
+
+    }
+
+    @Test
+    public void testValidatorNumber2() {
+        Validator v = new Validator();
+        NumberSchema schema = v.number();
+
+        assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid("abc"));
         assertTrue(schema.isValid(5));
-        assertTrue(schema.isValid(10));
-        assertFalse(schema.isValid(11));
+
+        assertTrue(schema.range(5, 10).isValid(""));
+
+        assertFalse(schema.required().isValid(null));
+        assertFalse(schema.required().isValid("wh"));
+        assertTrue(schema.required().isValid(10));
+
+        assertTrue(schema.positive().isValid(10));
+        assertFalse(schema.positive().isValid(0));
+        assertFalse(schema.positive().isValid(-10));
+
+        assertTrue(schema.range(5, 10).isValid(5));
+        assertTrue(schema.range(5, 10).isValid(10));
+        assertFalse(schema.range(5, 10).isValid(11));
+        assertFalse(schema.range(5, 10).isValid(-5));
 
     }
 
@@ -169,4 +193,5 @@ public class TestValidator {
         human8.put("age", 3);
         assertTrue(schema4.isValid(human8)); // true
     }
+
 }

@@ -19,7 +19,7 @@ public class BaseSchema {
 
     public boolean isValid(Object schema) {
 
-        if (!isRequired && schema == null) {
+        if (!isRequired && (schema == null || schema.equals(""))) {
             return true;
         } else if (isRequired && schema == null) {
             return false;
