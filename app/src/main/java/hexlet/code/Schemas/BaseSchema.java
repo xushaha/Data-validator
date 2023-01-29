@@ -18,8 +18,11 @@ public class BaseSchema {
     }
 
     public boolean isValid(Object schema) {
-        if (!isRequired) {
+
+        if (!isRequired && schema == null) {
             return true;
+        } else if (isRequired && schema == null) {
+            return false;
         } else {
             return checksList.stream().allMatch(check -> check.test(schema));
         }
