@@ -27,8 +27,8 @@ public class TestValidator {
         assertFalse(schema.isValid(""));
         assertFalse(schema.isValid(5));
 
-        final int MIN_LENGTH = 5;
-        schema.minLength(MIN_LENGTH);
+        final int MINLENGTH = 5;
+        schema.minLength(MINLENGTH);
         assertTrue(schema.isValid("what does the fox say"));
         assertFalse(schema.isValid("wh"));
 
