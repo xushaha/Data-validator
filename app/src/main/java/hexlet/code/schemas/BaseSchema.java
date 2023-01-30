@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 
 public class BaseSchema {
 
-    public List<Predicate> checksList = new ArrayList<>();
-    public boolean isRequired;
+    protected List<Predicate> checksList = new ArrayList<>();
+    private boolean isRequired;
 
     public void setRequired(boolean required) {
         isRequired = required;

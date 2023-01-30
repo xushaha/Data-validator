@@ -12,19 +12,19 @@ public class StringSchema extends BaseSchema {
     }
 
     @Override
-    public StringSchema required() {
+    public final StringSchema required() {
         setRequired(true);
         checksList.add(x -> x instanceof String && !x.equals(""));
         return this;
     }
 
-    public StringSchema minLength(int minLength) {
+    public final StringSchema minLength(int minLength) {
         Predicate<String> minLeng = x -> x.length() >= minLength;
         checksList.add(minLeng);
         return this;
     }
 
-    public StringSchema contains(String subString) {
+    public final StringSchema contains(String subString) {
         Predicate<String> contains = x -> x.contains(subString);
         checksList.add(contains);
         return this;
