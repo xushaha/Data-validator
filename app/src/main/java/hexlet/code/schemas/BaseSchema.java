@@ -9,15 +9,15 @@ public class BaseSchema {
     protected List<Predicate> checksList = new ArrayList<>();
     private boolean isRequired;
 
-    public void setRequired(boolean required) {
+    public final void setRequired(boolean required) {
         isRequired = required;
     }
 
-    public BaseSchema required() {
+    public final BaseSchema required() {
         return this;
     }
 
-    public boolean isValid(Object schema) {
+    public final boolean isValid(Object schema) {
 
         if (!isRequired && !(isValidType(schema))) {
             return true;
