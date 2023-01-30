@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class BaseSchema {
+public abstract class BaseSchema {
 
     protected List<Predicate> checksList = new ArrayList<>();
     private boolean isRequired;
@@ -13,9 +13,8 @@ public class BaseSchema {
         isRequired = required;
     }
 
-    public BaseSchema required() {
-        return this;
-    }
+    abstract BaseSchema required();
+
 
     public final boolean isValid(Object schema) {
 
@@ -28,8 +27,7 @@ public class BaseSchema {
         }
     }
 
-    boolean isValidType(Object object) {
-        return true;
-    }
+    abstract boolean isValidType(Object object);
+
 
 }
