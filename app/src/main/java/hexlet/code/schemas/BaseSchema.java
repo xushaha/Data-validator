@@ -21,7 +21,7 @@ public class BaseSchema {
 
         if (!isRequired && !(isValidType(schema))) {
             return true;
-        } else if (isRequired && schema == null) {
+        } else if (isRequired && (schema == null || !(isValidType(schema)))) {
             return false;
         } else {
             return checksList.stream().allMatch(check -> check.test(schema));
