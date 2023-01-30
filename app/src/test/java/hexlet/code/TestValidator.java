@@ -167,5 +167,5 @@ public class TestValidator {
         human8.put("age", 3);
         assertTrue(schema4.isValid(human8)); // true
     }
-    
+
 }
