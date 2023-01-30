@@ -47,8 +47,6 @@ public class TestValidator {
         assertTrue(schema.isValid("abc"));
         assertTrue(schema.isValid(5));
 
-        //assertTrue(schema.range(5, 10).isValid(""));
-
         assertFalse(schema.required().isValid(null));
         assertFalse(schema.required().isValid("wh"));
         assertTrue(schema.required().isValid(10));
@@ -61,6 +59,27 @@ public class TestValidator {
         assertTrue(schema.range(5, 10).isValid(10));
         assertFalse(schema.range(5, 10).isValid(11));
         assertFalse(schema.range(5, 10).isValid(-5));
+
+
+        // Пока не вызван метод required(), null считается валидным
+        schema.isValid(null); // true
+        schema.positive().isValid(null); // true
+
+        schema.required();
+        schema.isValid(null); // false
+        schema.isValid(10); // true
+        schema.isValid("5"); // false
+        schema.isValid(-10); // false
+
+        //  Ноль - не положительное число
+        schema.isValid(0); // false
+
+        schema.range(5, 10);
+
+        schema.isValid(5); // true
+        schema.isValid(10); // true
+        schema.isValid(4); // false
+        schema.isValid(11); // false
 
     }
 
@@ -169,5 +188,6 @@ public class TestValidator {
         human8.put("age", 3);
         assertTrue(schema4.isValid(human8)); // true
     }
+
 
 }
