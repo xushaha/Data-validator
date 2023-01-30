@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 public class StringSchema extends BaseSchema {
 
     @Override
-    public boolean isValidType(Object object) {
+    public final boolean isValidType(Object object) {
         return object instanceof String;
 
     }

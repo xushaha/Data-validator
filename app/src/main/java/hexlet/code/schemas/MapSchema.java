@@ -7,25 +7,25 @@ public class MapSchema extends BaseSchema {
 
 
     @Override
-    public boolean isValidType(Object object) {
+    public final boolean isValidType(Object object) {
         return object instanceof Map;
     }
 
     @Override
-    public MapSchema required() {
+    public final MapSchema required() {
         setRequired(true);
         checksList.add(x -> x instanceof Map);
         return this;
     }
 
-    public MapSchema sizeof(int size) {
+    public final MapSchema sizeof(int size) {
         Predicate<Map> range = x -> x.size() == size;
         checksList.add(range);
         return this;
     }
 
 
-    public MapSchema shape(Map<String, BaseSchema> schemas) {
+    public final MapSchema shape(Map<String, BaseSchema> schemas) {
         Predicate<Map> shape = value -> shapeCheck(schemas, value);
         checksList.add(shape);
         return this;
