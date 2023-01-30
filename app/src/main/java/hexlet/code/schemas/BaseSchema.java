@@ -13,7 +13,7 @@ public class BaseSchema {
         isRequired = required;
     }
 
-    public final BaseSchema required() {
+    public BaseSchema required() {
         return this;
     }
 
