@@ -5,7 +5,6 @@ plugins {
     id 'se.patrikerdes.use-latest-versions' version '0.2.18'
     id 'com.github.ben-manes.versions' version '0.42.0'
     id 'jacoco'
-
 }
 
 group 'hexlet.code'
@@ -30,11 +29,11 @@ dependencies {
             'org.slf4j:slf4j-log4j12:2.0.0-alpha6',
             'org.assertj:assertj-core:3.24.2'
     )
-
 }
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 testlogger {
@@ -42,11 +41,13 @@ testlogger {
 }
 
 jacocoTestReport {
+    dependsOn test
     reports {
-        xml.required = true
+        xml.enabled = true
     }
 }
 
 checkstyle {
     toolVersion '9.2.1'
 }
+

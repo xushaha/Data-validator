@@ -31,7 +31,7 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public final boolean shapeCheck(Map<String, BaseSchema> schemas, Map<String, Object> mapToCheck) {
+    private boolean shapeCheck(Map<String, BaseSchema> schemas, Map<String, Object> mapToCheck) {
 
         for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
 

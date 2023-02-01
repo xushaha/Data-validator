@@ -18,9 +18,9 @@ public abstract class BaseSchema {
 
     public final boolean isValid(Object schema) {
 
-        if (!isRequired && !(isValidType(schema))) {
+        if (!isRequired && !isValidType(schema)) {
             return true;
-        } else if (isRequired && (schema == null || !(isValidType(schema)))) {
+        } else if (isRequired && !isValidType(schema)) {
             return false;
         } else {
             return checksList.stream().allMatch(check -> check.test(schema));
