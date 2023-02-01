@@ -7,26 +7,26 @@ ___
 ## Валидатор данных
 *библиотека, которая проверяет, корректны ли введенные данные*
 
-#Пример использования:
+#####Пример использования:
 
 
-```
-Validator v = new Validator();
 
-*// строки*
-StringSchema schema = v.string().required();
+`Validator v = new Validator();`
+
+*// Проверка строк*
+```StringSchema schema = v.string().required();
 
 schema.isValid("what does the fox say"); // true
-schema.isValid(""); // false
+schema.isValid(""); // false```
 
-// числа
-NumberSchema schema = v.number().required().positive();
+*// Проверка чисел*
+```NumberSchema schema = v.number().required().positive();
 
 schema.isValid(-10); // false
-schema.isValid(10); // true
+schema.isValid(10); // true```
 
 // объект Map с поддержкой проверки структуры
-Map<String, BaseSchema> schemas = new HashMap<>();
+```Map<String, BaseSchema> schemas = new HashMap<>();
 schemas.put("name", v.string().required());
 schemas.put("age", v.number().positive());
 
